@@ -1,11 +1,17 @@
 using FizzBuzz.Interface;
 using FizzBuzz.Models;
+using FizzBuzz.Services;
+using FizzBuzz.Services.Interface;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IFizzBuzzGenerator,FizzBuzzGenerator>();  
+builder.Services.AddScoped<IFizzBuzzGenerator,FizzBuzzGenerator>();
+builder.Services.AddScoped<IFizzBuzzGenerator,FizzGenerator>();
+builder.Services.AddScoped<IFizzBuzzGenerator,BuzzGenerator>();
+builder.Services.AddScoped<IFizzBuzzService,FizzBuzzService>();  
 
 var app = builder.Build();
 
@@ -22,6 +28,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=FizzBuzz}/{action=Index}/{Id?}");
 
 app.Run();

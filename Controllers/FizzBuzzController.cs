@@ -1,9 +1,9 @@
 ﻿using FizzBuzz.Models;
 using FizzBuzz.Services.Interface;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FizzBuzz;
-
-public class FizzBuzzController 
+public class FizzBuzzController  : Controller 
 {
 
     // Controller class for handling FizzBuzz logic
@@ -15,15 +15,19 @@ public class FizzBuzzController
         _fizzBuzzService = fizzBuzzService;
     }
 
-    // Method to generate FizzBuzz numbers based on input
-    public FizzBuzzModel GenerateFizzBuzz(int input)
+    public IActionResult Index()
     {
-        var fizzBuzzNumbers = _fizzBuzzService.GetFizzBuzzNumbers(input);
-        return new FizzBuzzModel { Input = input, FizzBuzzNumbers = fizzBuzzNumbers };
+        return View();
     }
 
-    //public IActionResult Index()
-    //{
-    //    return View();
-    //}
+    public IActionResult Generate(FizzBuzzModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View("Index", model);
+        }
+
+        var fizzBuzzModel = _fizzBuzzService.GetFizzBuzzNumbers(model.Input);
+        return View("Result", fizzBuzzModel);
+    }
 }
