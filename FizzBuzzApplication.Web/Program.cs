@@ -1,7 +1,18 @@
+using FizzBuzz.Services;
+using FizzBuzzApplication.Web.Interface;
+using FizzBuzzApplication.Web.Models;
+using FizzBuzzApplication.Web.Services.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IFizzBuzzService,FizzBuzzService>();
+builder.Services.AddScoped<IFizzBuzzGenerator,FizzBuzzGenerator>();
+builder.Services.AddScoped<IFizzBuzzGenerator,BuzzGenerator>();
+builder.Services.AddScoped<IFizzBuzzGenerator,FizzGenerator>();
+
 
 var app = builder.Build();
 

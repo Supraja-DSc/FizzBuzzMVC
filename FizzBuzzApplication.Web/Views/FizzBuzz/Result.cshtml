@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FizzBuzzApplication.Web.Models.FizzBuzzModel
+<div>
+    <h1>FizzBuzz Result</h1>
+</div>
+<div>
+    <h2>All Numbers with FizzBuzz Conditions</h2>
+    <ul>
+        @foreach (var number in Model.FizzBuzzNumbers)
+        {
+            @if (number.Contains("Fiss") && number.Contains("Buzz"))
+            {
+                <p style="color: deeppink;">@number</p>
+            }
+            else if (number.Contains("Fiss"))
+            {
+                <p style="color: blue;">@number</p>
+            }
+            else if (number.Contains("Buzz"))
+            {
+                <p style="color: green;">@number</p>
+            }
+            else
+            {
+                <p>@number</p>
+            }
+        }
+    </ul>
+</div>

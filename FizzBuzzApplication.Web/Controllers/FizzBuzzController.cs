@@ -15,19 +15,14 @@ public class FizzBuzzController  : Controller
         _fizzBuzzService = fizzBuzzService;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
-
     public IActionResult Generate(FizzBuzzModel model)
     {
-        if (!ModelState.IsValid)
+        const int maxNumber = 1000;
+        var fizzBuzzModel = new FizzBuzzModel
         {
-            return View("Index", model);
-        }
-
-        var fizzBuzzModel = _fizzBuzzService.GetFizzBuzzNumbers(model.Input);
+            Input = maxNumber,
+            FizzBuzzNumbers = _fizzBuzzService.GetFizzBuzzNumbers(maxNumber)
+        };
         return View("Result", fizzBuzzModel);
     }
 }
