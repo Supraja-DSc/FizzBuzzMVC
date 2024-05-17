@@ -1,6 +1,6 @@
-using FizzBuzz.Services;
 using FizzBuzzApplication.Web.Interface;
 using FizzBuzzApplication.Web.Models;
+using FizzBuzzApplication.Web.Services;
 using FizzBuzzApplication.Web.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +12,7 @@ builder.Services.AddScoped<IFizzBuzzService,FizzBuzzService>();
 builder.Services.AddScoped<IFizzBuzzGenerator,FizzBuzzGenerator>();
 builder.Services.AddScoped<IFizzBuzzGenerator,BuzzGenerator>();
 builder.Services.AddScoped<IFizzBuzzGenerator,FizzGenerator>();
+builder.Services.AddSingleton<IDateTimeService,DateTimeService>();
 
 
 var app = builder.Build();

@@ -12,15 +12,15 @@
     <ul>
         @foreach (var number in Model.FizzBuzzNumbers)
         {
-            @if (number.Contains("Fiss") && number.Contains("Buzz"))
+            @if ((number.Contains("Fizz") && number.Contains("Buzz")) || (number.Contains("Wizz") && number.Contains("Wuzz")))
             {
                 <p style="color: deeppink;">@number</p>
             }
-            else if (number.Contains("Fiss"))
+            else if (number.Contains("Fizz") || number.Contains("Wizz"))
             {
                 <p style="color: blue;">@number</p>
             }
-            else if (number.Contains("Buzz"))
+            else if (number.Contains("Buzz") || number.Contains("Wuzz"))
             {
                 <p style="color: green;">@number</p>
             }

@@ -10,6 +10,6 @@ public class FizzGenerator : IFizzBuzzGenerator
     }
     public string Execute()
     {
-        return "Fiss";
+        return "Fizz";
     }
 }
